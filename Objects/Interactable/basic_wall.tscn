@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://4rh25ft4388s"]
+
+[ext_resource type="Texture2D" uid="uid://c5gb5stl64o2d" path="res://General Art/TestStuff/floor.png" id="1_m6jwj"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_aivlx"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_86l2o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3m8cy"]
+size = Vector2(128, 32)
+
+[node name="Basic Wall" type="StaticBody2D"]
+material = SubResource("CanvasItemMaterial_aivlx")
+position = Vector2(67, 21)
+physics_material_override = SubResource("PhysicsMaterial_86l2o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_m6jwj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3m8cy")
