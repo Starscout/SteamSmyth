@@ -1,13 +1,80 @@
-[gd_scene load_steps=3 format=3 uid="uid://da8601o2nbf27"]
+[gd_scene load_steps=10 format=3 uid="uid://bhnrtjxbr5p6w"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_kicpp"]
+[ext_resource type="Texture2D" uid="uid://chn6evt0quuc4" path="res://General Art/TestStuff/Main Character-Sheet.png" id="1_8d336"]
+[ext_resource type="Script" path="res://Player/player.gd" id="1_hkkap"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2pf1e"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gydum"]
 
-[node name="player" type="Node2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cb1i"]
+atlas = ExtResource("1_8d336")
+region = Rect2(0, 0, 32, 32)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_kicpp")
+[sub_resource type="AtlasTexture" id="AtlasTexture_vryqa"]
+atlas = ExtResource("1_8d336")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vh15o"]
+atlas = ExtResource("1_8d336")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqs8r"]
+atlas = ExtResource("1_8d336")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8cxs"]
+atlas = ExtResource("1_8d336")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hycbc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8cb1i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vryqa")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vh15o")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqs8r")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l8cxs")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[node name="player" type="Area2D"]
+script = ExtResource("1_hkkap")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_2pf1e")
+scale = Vector2(1.6, 1.6)
+shape = SubResource("RectangleShape2D_gydum")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hycbc")
+animation = &"right"
