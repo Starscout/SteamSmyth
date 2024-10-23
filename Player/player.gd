@@ -4,13 +4,15 @@ extends CharacterBody2D
 var screen_size
 var y_motion = 0
 var gravity = 15
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
 
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	velocity = Vector2.ZERO # The player's movement vector.
 	
 	if Input.is_action_pressed("right"):
@@ -19,9 +21,7 @@ func _process(delta):
 	if Input.is_action_pressed("left"):
 		velocity.x -= 1
 		$AnimatedSprite2D.animation = "left"
-		
-		
-		
+
 	if y_motion > -350:
 		y_motion -= gravity
 		
@@ -44,7 +44,7 @@ func _process(delta):
 	else:
 		$AnimatedSprite2D.animation = "default"
 	
-	velocity.y -= y_motion
+	velocity.y = y_motion
 	
 	position += velocity * delta 
 	position = position.clamp(Vector2.ZERO, screen_size)
