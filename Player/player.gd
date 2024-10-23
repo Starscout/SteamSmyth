@@ -1,16 +1,17 @@
-extends Area2D
+extends CharacterBody2D
 
 @export var speed = 500
 var screen_size
 var y_motion = 0
+var gravity = 15
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
-	set_gravity(15)
+
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var velocity = Vector2.ZERO # The player's movement vector.
+	velocity = Vector2.ZERO # The player's movement vector.
 	
 	if Input.is_action_pressed("right"):
 		velocity.x += 1
