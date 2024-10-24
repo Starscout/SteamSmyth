@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 # Exported variables for easy tweaking in the editor
 @export var speed = 500
-@export var gravity = 15
+@export var gravity = 28
 @export var jump_force = 700  # Adding jump force for jumping
 
 # Other variables
@@ -40,7 +40,25 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("up") and is_on_floor():
 		self.velocity.y = -jump_force  # Apply negative force to jump
 		$AnimatedSprite2D.animation = "up"
-
+	
+	if is_on_wall():
+		if velocity.x > 0:
+			print("right wall")
+		elif velocity.x < 0:
+			print ("left wall")
+		self.velocity.y = 0
+	
+	if is_on_wall() and Input.is_action_just_pressed("up"):
+		var wall_direction = 0
+		if velocity.x > 0:
+			print("right wall")
+			wall_direction = -1
+		elif velocity.x < 0:
+			print ("left wall")
+			wall_direction = 1
+		self.velocity.y = -jump_force/2
+		self.velocity.x = speed * wall_direction
+		
 	# Use move_and_slide to handle movement and collision automatically
 	move_and_slide()
 
