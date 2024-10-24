@@ -41,6 +41,11 @@ func _physics_process(delta):
 		self.velocity.y = -jump_force  # Apply negative force to jump
 		$AnimatedSprite2D.animation = "up"
 	
+	
+	
+	
+	
+	#Wall jumping physics
 	if is_on_wall_only() and Input.is_action_pressed("left"):
 		self.velocity.y = 0
 		if Input.is_action_just_pressed("up"):
