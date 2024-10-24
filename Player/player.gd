@@ -41,24 +41,19 @@ func _physics_process(delta):
 		self.velocity.y = -jump_force  # Apply negative force to jump
 		$AnimatedSprite2D.animation = "up"
 	
-	if is_on_wall():
-		if velocity.x > 0:
-			print("right wall")
-		elif velocity.x < 0:
-			print ("left wall")
+	if is_on_wall_only() and Input.is_action_pressed("left"):
 		self.velocity.y = 0
-	
-	if is_on_wall() and Input.is_action_just_pressed("up"):
-		var wall_direction = 0
-		if velocity.x > 0:
-			print("right wall")
-			wall_direction = -1
-		elif velocity.x < 0:
-			print ("left wall")
-			wall_direction = 1
-		self.velocity.y = -jump_force/2
-		self.velocity.x = speed * wall_direction
+		if Input.is_action_just_pressed("up"):
+			self.velocity.y = -jump_force * 1.5
+			self.velocity.x = speed * 5
+	if is_on_wall_only() and Input.is_action_pressed("right"):
+		self.velocity.y = 0
+		if Input.is_action_just_pressed("up"):
+			self.velocity.y = -jump_force * 1.5
+			self.velocity.x = speed * -5
 		
+		
+
 	# Use move_and_slide to handle movement and collision automatically
 	move_and_slide()
 

@@ -45,6 +45,7 @@ sources/0 = SubResource("TileSetAtlasSource_4rimo")
 [node name="player" parent="." instance=ExtResource("2_20xbk")]
 position = Vector2(366, 181)
 disable_mode = 1
+speed = 300
 gravity = 28
 
 [node name="Basic Wall" parent="." instance=ExtResource("2_fvlbx")]
