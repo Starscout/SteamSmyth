@@ -44,7 +44,7 @@ func _physics_process(delta):
 	else:
 		$AnimatedSprite2D.animation = "default"
 	
-	velocity.y = y_motion
+	velocity.y -= y_motion
 	
 	position += velocity * delta 
 	position = position.clamp(Vector2.ZERO, screen_size)
