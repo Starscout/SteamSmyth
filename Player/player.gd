@@ -1,50 +1,48 @@
 extends CharacterBody2D
 
+# Exported variables for easy tweaking in the editor
 @export var speed = 500
-var screen_size
-var y_motion = 0
-var gravity = 15
+@export var gravity = 15
+@export var jump_force = 700  # Adding jump force for jumping
 
+# Other variables
+var screen_size: Vector2
 
-# Called when the node enters the scene tree for the first time.
+# Called when the node enters the scene tree for the first time
 func _ready():
 	screen_size = get_viewport_rect().size
 
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# Called every physics frame (handles movement and collisions)
 func _physics_process(delta):
-	velocity = Vector2.ZERO # The player's movement vector.
-	
+	# Reset horizontal velocity each frame
+	self.velocity.x = 0
+
+	# Handle horizontal movement and animations
 	if Input.is_action_pressed("right"):
-		velocity.x += 1
+		self.velocity.x += speed
 		$AnimatedSprite2D.animation = "right"
-	if Input.is_action_pressed("left"):
-		velocity.x -= 1
+	elif Input.is_action_pressed("left"):
+		self.velocity.x -= speed
 		$AnimatedSprite2D.animation = "left"
 
-	if y_motion > -350:
-		y_motion -= gravity
-		
-
-	if Input.is_action_pressed("down"):
-		
-		y_motion -= 10
-		$AnimatedSprite2D.animation = "down"
-		print(y_motion)
-		
-		#We'll make this a jump button for now but I do want to change it to space bar or something
-	if Input.is_action_pressed("up"):
-		if y_motion < 500:
-			y_motion += 250
-		$AnimatedSprite2D.animation = "up"
-		print(y_motion)
-	
-	if velocity.length() > 0:
-		velocity = velocity * speed
+	# Apply gravity if not on the floor
+	if not is_on_floor():
+		self.velocity.y += gravity
 	else:
-		$AnimatedSprite2D.animation = "default"
-	
-	velocity.y -= y_motion
-	
-	position += velocity * delta 
+		self.velocity.y = 0  # Reset vertical velocity when on the ground
+
+	# Vertical movement (for "down" action, can be removed if not needed)
+	if Input.is_action_pressed("down"):
+		self.velocity.y += 10
+		$AnimatedSprite2D.animation = "down"
+
+	# Jump logic (pressing "up" makes the character jump)
+	if Input.is_action_just_pressed("up") and is_on_floor():
+		self.velocity.y = -jump_force  # Apply negative force to jump
+		$AnimatedSprite2D.animation = "up"
+
+	# Use move_and_slide to handle movement and collision automatically
+	move_and_slide()
+
+	# Optional: Clamp the position to keep the player within the screen bounds
 	position = position.clamp(Vector2.ZERO, screen_size)
