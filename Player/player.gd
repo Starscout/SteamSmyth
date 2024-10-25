@@ -46,21 +46,20 @@ func _physics_process(delta):
 	
 	
 	#Wall jumping physics
-	if is_on_wall_only() and Input.is_action_pressed("left"):
+	if is_on_wall_only() and Input.is_action_pressed("left") and not Input.is_action_pressed("down"):
 		self.velocity.y = 0
 		if Input.is_action_just_pressed("up"):
-			self.velocity.y = -jump_force * 1.5
+			self.velocity.y = -jump_force * 1
 			self.velocity.x = speed * 5
-	if is_on_wall_only() and Input.is_action_pressed("right"):
+	if is_on_wall_only() and Input.is_action_pressed("right") and not Input.is_action_pressed("down"):
 		self.velocity.y = 0
 		if Input.is_action_just_pressed("up"):
-			self.velocity.y = -jump_force * 1.5
+			self.velocity.y = -jump_force * 1
 			self.velocity.x = speed * -5
-		
-		
 
 	# Use move_and_slide to handle movement and collision automatically
 	move_and_slide()
 
 	# Optional: Clamp the position to keep the player within the screen bounds
-	position = position.clamp(Vector2.ZERO, screen_size)
+	#position = position.clamp(Vector2.ZERO, screen_size)
+	
