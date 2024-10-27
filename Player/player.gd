@@ -14,10 +14,17 @@ var wall_jump_left = 0
 var screen_size: Vector2
 var is_near_left_wall = false
 var is_near_right_wall = false
+var about_to_hit_left_wall = false
+var about_to_hit_right_wall = false
+
+signal player_path_sent(path: NodePath)
 # Called when the node enters the scene tree for the first time
 func _ready():
 	screen_size = get_viewport_rect().size
-
+	
+	
+	#send a signal to camera of my path
+	emit_signal("player_path_sent", get_path())
 # Called every physics frame (handles movement and collisions)
 func _physics_process(delta):
 	# Reset horizontal velocity each frame
@@ -62,38 +69,30 @@ func _physics_process(delta):
 	if (is_on_floor() and Input.is_action_just_pressed("up")):
 		self.velocity.y = -jump_force
 		jump_buffer_timer = 0
+
 #Wall Jump stuffs
 	#Wall only stuff
-	if is_on_wall():
-		# Use collision check to determine which wall
-		if velocity.x > 0:
-			is_near_right_wall = true
-		elif velocity.x < 0:
-			is_near_left_wall = true
+	about_to_hit_left_wall = $Raycast_left.is_colliding()
+	about_to_hit_right_wall = $Raycast_right.is_colliding()
 	#Coyote
-	if (is_on_wall()):
+	if (is_on_floor()):
 		coyote_timer = coyote_time
 	if (not is_on_wall() and coyote_timer > 0 and Input.is_action_just_pressed("up")):
 		self.velocity.y = -jump_force
-		print("coyote jump!")
 	if coyote_timer > 0:
 		coyote_timer -= delta
+
 	#Jump Buffer
 		#Wall Jump Left Call
-	if (jump_buffer_timer > 0 and is_near_left_wall and is_on_wall_only()):
+	if (jump_buffer_timer > 0 and (about_to_hit_left_wall) and is_on_wall_only()):
 		jump_buffer_timer = 0
 		wall_jump_timer = wall_jump_cooldown
 		wall_jump_left = 1
-		print ("left jump!")
 		#Wall Jump Right Call
-	if (jump_buffer_timer > 0 and is_near_right_wall and is_on_wall_only()):
+	if (jump_buffer_timer > 0 and about_to_hit_right_wall and is_on_wall_only()):
 		jump_buffer_timer = 0
 		wall_jump_timer = wall_jump_cooldown
 		wall_jump_left = -1
-		print("Right Jump!")
-		
-		
-		
-		
+
 	# Use move_and_slide to handle movement and collision automatically
 	move_and_slide()

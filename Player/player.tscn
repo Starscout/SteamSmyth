@@ -79,3 +79,9 @@ shape = SubResource("RectangleShape2D_gydum")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hycbc")
+
+[node name="Raycast_left" type="RayCast2D" parent="."]
+target_position = Vector2(-25, 0)
+
+[node name="Raycast_right" type="RayCast2D" parent="."]
+target_position = Vector2(25, 0)
