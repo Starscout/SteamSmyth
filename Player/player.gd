@@ -19,6 +19,7 @@ var about_to_hit_right_wall = false
 var speed_up = 3
 var speed_down = 6
 var speed_change = 0
+var right_left = 0
 
 signal player_path_sent(path: NodePath)
 # Called when the node enters the scene tree for the first time
@@ -44,7 +45,7 @@ func _physics_process(delta):
 		self.velocity.y = -jump_force/2
 	else:
 		#Start speed-up
-		if Input.is_action_just_pressed("left") or Input.is_action_just_released("right"):
+		if Input.is_action_just_pressed("left") or Input.is_action_just_pressed("right"):
 			speed_change = speed_up
 			# Slow down for your first 3 frames then go (OR not released
 		elif (Input.is_action_pressed("right") and speed_change > 0):
@@ -65,11 +66,22 @@ func _physics_process(delta):
 
 
 		#Slow down for 6 frames after release
-		elif Input.is_action_just_released("left") or Input.is_action_just_released("right"):
+		elif Input.is_action_just_released("left") and is_on_floor():
 			speed_change = speed_down
-		
-	
+			right_left = 1
+		elif Input.is_action_just_released("right") and is_on_floor():
+			speed_change = speed_down
+			right_left = 2
+		elif speed_change > 0 and right_left == 1 and is_on_floor():
+			self.velocity.x -= speed/3
+			speed_change -= 1
 
+		elif speed_change > 0 and right_left == 2 and is_on_floor():
+			self.velocity.x += speed/3
+			speed_change -= 1
+	if speed_change == 0:
+		right_left = 0
+	
 	# Apply gravity if not on the floor
 	if not is_on_floor():
 		self.velocity.y += gravity
