@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://k0fba44hyc4c"
-path="res://.godot/imported/hotdog.png-ec6f108f38658500561d50b21cd5fd2e.ctex"
+uid="uid://co2v4553433sw"
+path="res://.godot/imported/Savespot-Sheet.png-e003620121fe611084fd1624e04dfc3b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Objects/Platform/hotdog.png"
-dest_files=["res://.godot/imported/hotdog.png-ec6f108f38658500561d50b21cd5fd2e.ctex"]
+source_file="res://General Art/TestStuff/Savespot-Sheet.png"
+dest_files=["res://.godot/imported/Savespot-Sheet.png-e003620121fe611084fd1624e04dfc3b.ctex"]
 
 [params]
 

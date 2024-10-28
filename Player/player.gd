@@ -25,16 +25,12 @@ signal player_path_sent(path: NodePath)
 # Called when the node enters the scene tree for the first time
 func _ready():
 	screen_size = get_viewport_rect().size
-	
-	
 	#send a signal to camera of my path
 	emit_signal("player_path_sent", get_path())
 # Called every physics frame (handles movement and collisions)
 func _physics_process(delta):
 	# Reset horizontal velocity each frame
 	self.velocity.x = 0
-
-
 	# Handle horizontal movement and animations
 	if wall_jump_timer > 0:
 		wall_jump_timer -= delta
@@ -74,10 +70,10 @@ func _physics_process(delta):
 		elif speed_change > 0 and right_left == 1 and is_on_floor():
 			self.velocity.x -= speed/3
 			speed_change -= 1
-
 		elif speed_change > 0 and right_left == 2 and is_on_floor():
 			self.velocity.x += speed/3
 			speed_change -= 1
+			
 	if speed_change == 0:
 		right_left = 0
 	
@@ -123,6 +119,5 @@ func _physics_process(delta):
 		jump_buffer_timer = 0
 		wall_jump_timer = wall_jump_cooldown
 		wall_jump_left = -1
-
 	# Use move_and_slide to handle movement and collision automatically
 	move_and_slide()
