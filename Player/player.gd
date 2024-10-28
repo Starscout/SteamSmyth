@@ -64,7 +64,6 @@ func _physics_process(delta):
 			self.velocity.x -= speed
 			$AnimatedSprite2D.animation = "left"
 
-
 		#Slow down for 6 frames after release
 		elif Input.is_action_just_released("left") and is_on_floor():
 			speed_change = speed_down
@@ -113,7 +112,6 @@ func _physics_process(delta):
 		self.velocity.y = -jump_force
 	if coyote_timer > 0:
 		coyote_timer -= delta
-
 	#Jump Buffer
 		#Wall Jump Left Call
 	if (jump_buffer_timer > 0 and (about_to_hit_left_wall) and is_on_wall_only()):
