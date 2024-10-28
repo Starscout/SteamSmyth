@@ -16,6 +16,9 @@ var is_near_left_wall = false
 var is_near_right_wall = false
 var about_to_hit_left_wall = false
 var about_to_hit_right_wall = false
+var speed_up = 3
+var speed_down = 6
+var speed_change = 0
 
 signal player_path_sent(path: NodePath)
 # Called when the node enters the scene tree for the first time
@@ -39,16 +42,33 @@ func _physics_process(delta):
 		else:
 			self.velocity.x += speed * wall_jump_left
 		self.velocity.y = -jump_force/2
-		gravity = 150
 	else:
-		if Input.is_action_pressed("right"):
+		#Start speed-up
+		if Input.is_action_just_pressed("left") or Input.is_action_just_released("right"):
+			speed_change = speed_up
+			# Slow down for your first 3 frames then go (OR not released
+		elif (Input.is_action_pressed("right") and speed_change > 0):
+			self.velocity.x += speed/3
+			speed_change -= 1
+			$AnimatedSprite2D.animation = "right"
+		elif Input.is_action_pressed("left") and speed_change > 0:
+			self.velocity.x -= speed/3
+			speed_change -= 1
+			$AnimatedSprite2D.animation = "left"
+			
+		elif Input.is_action_pressed("right"):
 			self.velocity.x += speed
 			$AnimatedSprite2D.animation = "right"
 		elif Input.is_action_pressed("left"):
 			self.velocity.x -= speed
 			$AnimatedSprite2D.animation = "left"
-		gravity = 50
 
+
+		#Slow down for 6 frames after release
+		elif Input.is_action_just_released("left") or Input.is_action_just_released("right"):
+			speed_change = speed_down
+		
+	
 
 	# Apply gravity if not on the floor
 	if not is_on_floor():
