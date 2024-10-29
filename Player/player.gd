@@ -20,6 +20,7 @@ var speed_up = 3
 var speed_down = 6
 var speed_change = 0
 var right_left = 0
+var respawn_location = position
 
 signal player_path_sent(path: NodePath)
 # Called when the node enters the scene tree for the first time
@@ -27,6 +28,11 @@ func _ready():
 	screen_size = get_viewport_rect().size
 	#send a signal to camera of my path
 	emit_signal("player_path_sent", get_path())
+
+	for save_point in get_tree().get_nodes_in_group("SavePoints"):
+		save_point.connect("save_point_activated", Callable(self, "_on_save_point_activated"))
+
+
 # Called every physics frame (handles movement and collisions)
 func _physics_process(delta):
 	# Reset horizontal velocity each frame
@@ -121,3 +127,9 @@ func _physics_process(delta):
 		wall_jump_left = -1
 	# Use move_and_slide to handle movement and collision automatically
 	move_and_slide()
+
+	#Death button and save location
+	if Input.is_action_just_pressed("reset"):
+		global_position = respawn_location
+func _on_save_point_activated(new_position):
+	respawn_location = new_position

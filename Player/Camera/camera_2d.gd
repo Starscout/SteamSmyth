@@ -6,9 +6,12 @@ var player
 var is_following_player = false
 var smooth_stop_timer = 0.0  # Timer for smooth stop transition
 var smooth_stop_duration = 0.3  # Duration for smooth stopping (in seconds)
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player = get_node("/root/Node2D/player")
+
 
 
 func _process(delta):
@@ -29,3 +32,4 @@ func _on_inner_area_body_entered(body):
 	if body == player and is_following_player:
 		is_following_player = false
 		smooth_stop_timer = smooth_stop_duration
+	

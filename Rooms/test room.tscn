@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://dqkf6t3m1dghw"]
+[gd_scene load_steps=9 format=4 uid="uid://dqkf6t3m1dghw"]
 
+[ext_resource type="Script" path="res://Rooms/main.gd" id="1_rdvsp"]
 [ext_resource type="PackedScene" uid="uid://bhnrtjxbr5p6w" path="res://Player/player.tscn" id="2_20xbk"]
 [ext_resource type="PackedScene" uid="uid://4rh25ft4388s" path="res://Objects/Platform/basic_wall.tscn" id="2_fvlbx"]
 [ext_resource type="Texture2D" uid="uid://dyn0dhkh5mnhp" path="res://General Art/TestStuff/TestTile.png" id="3_qfxkx"]
-[ext_resource type="PackedScene" uid="uid://fesgrtr7hbwj" path="res://Objects/Interactable/save_spot.tscn" id="5_3pjcj"]
+[ext_resource type="PackedScene" uid="uid://dxd56cc7ya63t" path="res://Objects/Interactable/save_point.tscn" id="5_q7ju7"]
 [ext_resource type="PackedScene" uid="uid://bbdfxw7kdbr1r" path="res://Player/Camera/camera.tscn" id="5_yimp1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4rimo"]
@@ -42,9 +43,10 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_4rimo")
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_rdvsp")
 
 [node name="player" parent="." instance=ExtResource("2_20xbk")]
-position = Vector2(366, 181)
+position = Vector2(170, 208)
 disable_mode = 1
 gravity = 50
 coyote_time = 0.05
@@ -60,8 +62,10 @@ tile_set = SubResource("TileSet_rxd31")
 y_sort_origin = 1
 
 [node name="camera" parent="." instance=ExtResource("5_yimp1")]
-position = Vector2(556, 283)
+position = Vector2(577, 318)
 
-[node name="SaveSpot" parent="." instance=ExtResource("5_3pjcj")]
-position = Vector2(420, 251)
-scale = Vector2(0.2, 0.2)
+[node name="save point" parent="." groups=["SavePoints"] instance=ExtResource("5_q7ju7")]
+position = Vector2(402, 243)
+
+[node name="save point2" parent="." groups=["SavePoints"] instance=ExtResource("5_q7ju7")]
+position = Vector2(1204, 219)
