@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://btjagb02d2d65"]
+
+[ext_resource type="Script" path="res://Player/scripts/hud.gd" id="1_65x1y"]
+[ext_resource type="Texture2D" uid="uid://b02uk5iggrxxe" path="res://General Art/TestStuff/saveIcon Sheet.png" id="2_8pfw1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dty15"]
+atlas = ExtResource("2_8pfw1")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uf0hk"]
+atlas = ExtResource("2_8pfw1")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6jfd"]
+atlas = ExtResource("2_8pfw1")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivs3f"]
+atlas = ExtResource("2_8pfw1")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xvni6"]
+atlas = ExtResource("2_8pfw1")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1c75d"]
+atlas = ExtResource("2_8pfw1")
+region = Rect2(500, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42llj"]
+atlas = ExtResource("2_8pfw1")
+region = Rect2(600, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4atyv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dty15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uf0hk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6jfd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ivs3f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xvni6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1c75d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42llj")
+}],
+"loop": true,
+"name": &"save_game",
+"speed": 9.0
+}]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_65x1y")
+
+[node name="SaveIcon" type="AnimatedSprite2D" parent="."]
+top_level = true
+position = Vector2(1075, 585)
+sprite_frames = SubResource("SpriteFrames_4atyv")
+animation = &"save_game"
+frame_progress = 0.545555

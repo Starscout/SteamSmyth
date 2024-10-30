@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://bhnrtjxbr5p6w"]
 
 [ext_resource type="Texture2D" uid="uid://chn6evt0quuc4" path="res://General Art/TestStuff/Main Character-Sheet.png" id="1_8d336"]
-[ext_resource type="Script" path="res://Player/player.gd" id="1_hkkap"]
+[ext_resource type="Script" path="res://Player/scripts/player.gd" id="1_hkkap"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gydum"]
 
