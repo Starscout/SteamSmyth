@@ -15,6 +15,10 @@ run/main_scene="res://Rooms/test room.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+PlayerData="*res://Player/scripts/player_data.gd"
+
 [input]
 
 up={
