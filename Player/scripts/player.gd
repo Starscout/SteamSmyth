@@ -37,7 +37,6 @@ func _ready():
 	for save_point in get_tree().get_nodes_in_group("SavePoints"):
 		save_point.connect("save_point_activated", Callable(self, "_on_save_point_activated"))
 
-
 # Called every physics frame (handles movement and collisions)
 func _physics_process(delta):
 	# Reset horizontal velocity each frame
@@ -71,7 +70,6 @@ func _physics_process(delta):
 		elif Input.is_action_pressed("left") and dashing == false:
 			self.velocity.x -= speed
 			$AnimatedSprite2D.animation = "left"
-
 		#Slow down for 6 frames after release
 		elif Input.is_action_just_released("left") and is_on_floor():
 			speed_change = speed_down
@@ -103,8 +101,6 @@ func _physics_process(delta):
 		jump_buffer_timer = jump_buffer_time
 	if jump_buffer_timer > 0:
 		jump_buffer_timer -= delta
-		
-		
 		
 	if (is_on_floor() and Input.is_action_just_pressed("jump")):
 		self.velocity.y = -jump_force
@@ -148,7 +144,6 @@ func _physics_process(delta):
 		if Input.is_action_pressed("left") and Input.is_action_pressed("up"):
 			self.velocity.x = -750
 			self.velocity.y = -750
-
 		elif Input.is_action_pressed("left") and Input.is_action_pressed("down"):
 			self.velocity.x = -750
 			self.velocity.y = 750
@@ -169,11 +164,10 @@ func _physics_process(delta):
 		elif Input.is_action_pressed("down"):
 			self.velocity.y = 900
 			
-			
 	if dash_change > 0:
 		dash_change -= 1
 	else: 
 		dashing = false
-		
+
 func _on_save_point_activated(new_position):
 	respawn_location = new_position
