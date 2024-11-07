@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://dqkf6t3m1dghw"]
+[gd_scene load_steps=11 format=4 uid="uid://dqkf6t3m1dghw"]
 
 [ext_resource type="Script" path="res://Rooms/main.gd" id="1_rdvsp"]
 [ext_resource type="PackedScene" uid="uid://bhnrtjxbr5p6w" path="res://Player/player.tscn" id="2_20xbk"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dxd56cc7ya63t" path="res://Objects/Interactable/save_point.tscn" id="5_q7ju7"]
 [ext_resource type="PackedScene" uid="uid://bbdfxw7kdbr1r" path="res://Player/Camera/camera.tscn" id="5_yimp1"]
 [ext_resource type="PackedScene" uid="uid://btjagb02d2d65" path="res://Player/hud.tscn" id="7_kdtm3"]
+[ext_resource type="PackedScene" uid="uid://dsh0go0rp7vbv" path="res://Objects/Enemies/spike.tscn" id="8_mkeql"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4rimo"]
 texture = ExtResource("3_qfxkx")
@@ -75,3 +76,6 @@ position = Vector2(1204, 219)
 position = Vector2(-293, 256)
 
 [node name="HUD" parent="." instance=ExtResource("7_kdtm3")]
+
+[node name="spike" parent="." groups=["spikes"] instance=ExtResource("8_mkeql")]
+position = Vector2(1, 613)

@@ -36,7 +36,9 @@ func _ready():
 
 	for save_point in get_tree().get_nodes_in_group("SavePoints"):
 		save_point.connect("save_point_activated", Callable(self, "_on_save_point_activated"))
-
+	var spikes = get_tree().get_nodes_in_group(("spikes"))
+	for spike in spikes:
+		spike.connect("player_hit", Callable(self, "_on_player_hit"))
 # Called every physics frame (handles movement and collisions)
 func _physics_process(delta):
 	# Reset horizontal velocity each frame
@@ -138,7 +140,7 @@ func _physics_process(delta):
 		
 	if Input.is_action_just_pressed("dash") and dashed == false:
 		wall_jump_timer = 0
-		dashed = true
+		
 		dashing = true
 		dash_change = dash_timer
 		if Input.is_action_pressed("left") and Input.is_action_pressed("up"):
@@ -166,8 +168,14 @@ func _physics_process(delta):
 			
 	if dash_change > 0:
 		dash_change -= 1
+		dashed = true
 	else: 
 		dashing = false
 
 func _on_save_point_activated(new_position):
 	respawn_location = new_position
+func _on_player_hit():
+	death()
+
+func death():
+	global_position = respawn_location
