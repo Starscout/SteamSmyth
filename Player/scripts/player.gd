@@ -136,7 +136,7 @@ func _physics_process(delta):
 	
 	#Death button and save location
 	if Input.is_action_just_pressed("reset"):
-		global_position = respawn_location
+		death()
 		
 	if Input.is_action_just_pressed("dash") and dashed == false:
 		wall_jump_timer = 0

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://m71ps0vayayx"
-path="res://.godot/imported/hotdog.png-554b8408e725d8cdb154c96bc8af8663.ctex"
+uid="uid://brdmuto688d6d"
+path="res://.godot/imported/Tilesheet.png-fe10a6b1fd6cf6959a04fcabc7af4442.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Objects/Enemies/hotdog.png"
-dest_files=["res://.godot/imported/hotdog.png-554b8408e725d8cdb154c96bc8af8663.ctex"]
+source_file="res://General Art/TestStuff/Tilesheet.png"
+dest_files=["res://.godot/imported/Tilesheet.png-fe10a6b1fd6cf6959a04fcabc7af4442.ctex"]
 
 [params]
 
