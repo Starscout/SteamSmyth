@@ -235,7 +235,7 @@ position = Vector2(1152, 888)
 position = Vector2(1179, 888)
 
 [node name="Camera2D" parent="." instance=ExtResource("3_opbbh")]
-position = Vector2(372, 359)
+position = Vector2(393, 453)
 
 [node name="player" parent="." instance=ExtResource("4_bffbm")]
 position = Vector2(162, 431)
@@ -244,7 +244,7 @@ gravity = 40
 [node name="HUD" parent="." instance=ExtResource("5_igry8")]
 
 [node name="save point" parent="." groups=["SavePoints"] instance=ExtResource("6_at58o")]
-position = Vector2(162, 428)
+position = Vector2(163, 428)
 
 [node name="save point2" parent="." groups=["SavePoints"] instance=ExtResource("6_at58o")]
-position = Vector2(517, 482)
+position = Vector2(1060, 389)
