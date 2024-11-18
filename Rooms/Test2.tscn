@@ -1,14 +1,14 @@
 [gd_scene load_steps=11 format=4 uid="uid://b7hvlkyonga4p"]
 
-[ext_resource type="Texture2D" uid="uid://brdmuto688d6d" path="res://General Art/TestStuff/Tilesheet.png" id="1_40nt8"]
-[ext_resource type="PackedScene" uid="uid://dsh0go0rp7vbv" path="res://Objects/Enemies/spike.tscn" id="2_n4wje"]
-[ext_resource type="PackedScene" uid="uid://bbdfxw7kdbr1r" path="res://Player/Camera/camera.tscn" id="3_opbbh"]
-[ext_resource type="PackedScene" uid="uid://bhnrtjxbr5p6w" path="res://Player/player.tscn" id="4_bffbm"]
-[ext_resource type="PackedScene" uid="uid://btjagb02d2d65" path="res://Player/hud.tscn" id="5_igry8"]
-[ext_resource type="PackedScene" uid="uid://dxd56cc7ya63t" path="res://Objects/Interactable/save_point.tscn" id="6_at58o"]
+[ext_resource type="Texture2D" uid="uid://brdmuto688d6d" path="res://General Art/TestStuff/Tilesheet.png" id="1_fbpnx"]
+[ext_resource type="PackedScene" uid="uid://dsh0go0rp7vbv" path="res://Objects/Enemies/spike.tscn" id="2_sap67"]
+[ext_resource type="PackedScene" uid="uid://bbdfxw7kdbr1r" path="res://Player/Camera/camera.tscn" id="3_66gws"]
+[ext_resource type="PackedScene" uid="uid://bhnrtjxbr5p6w" path="res://Player/player.tscn" id="4_dlja7"]
+[ext_resource type="PackedScene" uid="uid://btjagb02d2d65" path="res://Player/hud.tscn" id="5_m4i7i"]
+[ext_resource type="PackedScene" uid="uid://dxd56cc7ya63t" path="res://Objects/Interactable/save_point.tscn" id="6_fh7nr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0lcqa"]
-texture = ExtResource("1_40nt8")
+texture = ExtResource("1_fbpnx")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/z_index = -1
@@ -45,7 +45,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_0lcqa")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_00m4a"]
-texture = ExtResource("1_40nt8")
+texture = ExtResource("1_fbpnx")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/z_index = -1
@@ -201,50 +201,50 @@ y_sort_origin = -1
 
 [node name="Spikes" type="Node" parent="."]
 
-[node name="spike" parent="Spikes" groups=["spikes"] instance=ExtResource("2_n4wje")]
+[node name="spike" parent="Spikes" groups=["spikes"] instance=ExtResource("2_sap67")]
 position = Vector2(985, 888)
 
-[node name="Area2D" parent="Spikes" groups=["spikes"] instance=ExtResource("2_n4wje")]
+[node name="Area2D" parent="Spikes" groups=["spikes"] instance=ExtResource("2_sap67")]
 position = Vector2(1002, 888)
 
-[node name="Area2D2" parent="Spikes" groups=["spikes"] instance=ExtResource("2_n4wje")]
+[node name="Area2D2" parent="Spikes" groups=["spikes"] instance=ExtResource("2_sap67")]
 position = Vector2(1019, 888)
 
-[node name="Area2D3" parent="Spikes" groups=["spikes"] instance=ExtResource("2_n4wje")]
+[node name="Area2D3" parent="Spikes" groups=["spikes"] instance=ExtResource("2_sap67")]
 position = Vector2(1036, 888)
 
-[node name="Area2D4" parent="Spikes" groups=["spikes"] instance=ExtResource("2_n4wje")]
+[node name="Area2D4" parent="Spikes" groups=["spikes"] instance=ExtResource("2_sap67")]
 position = Vector2(1054, 888)
 
-[node name="Area2D5" parent="Spikes" groups=["spikes"] instance=ExtResource("2_n4wje")]
+[node name="Area2D5" parent="Spikes" groups=["spikes"] instance=ExtResource("2_sap67")]
 position = Vector2(1072, 888)
 
-[node name="Area2D6" parent="Spikes" groups=["spikes"] instance=ExtResource("2_n4wje")]
+[node name="Area2D6" parent="Spikes" groups=["spikes"] instance=ExtResource("2_sap67")]
 position = Vector2(1091, 888)
 
-[node name="Area2D7" parent="Spikes" groups=["spikes"] instance=ExtResource("2_n4wje")]
+[node name="Area2D7" parent="Spikes" groups=["spikes"] instance=ExtResource("2_sap67")]
 position = Vector2(1110, 888)
 
-[node name="Area2D8" parent="Spikes" groups=["spikes"] instance=ExtResource("2_n4wje")]
+[node name="Area2D8" parent="Spikes" groups=["spikes"] instance=ExtResource("2_sap67")]
 position = Vector2(1131, 888)
 
-[node name="Area2D9" parent="Spikes" groups=["spikes"] instance=ExtResource("2_n4wje")]
+[node name="Area2D9" parent="Spikes" groups=["spikes"] instance=ExtResource("2_sap67")]
 position = Vector2(1152, 888)
 
-[node name="Area2D10" parent="Spikes" groups=["spikes"] instance=ExtResource("2_n4wje")]
+[node name="Area2D10" parent="Spikes" groups=["spikes"] instance=ExtResource("2_sap67")]
 position = Vector2(1179, 888)
 
-[node name="Camera2D" parent="." instance=ExtResource("3_opbbh")]
+[node name="Camera2D" parent="." instance=ExtResource("3_66gws")]
 position = Vector2(393, 453)
 
-[node name="player" parent="." instance=ExtResource("4_bffbm")]
+[node name="player" parent="." instance=ExtResource("4_dlja7")]
 position = Vector2(162, 431)
 gravity = 40
 
-[node name="HUD" parent="." instance=ExtResource("5_igry8")]
+[node name="HUD" parent="." instance=ExtResource("5_m4i7i")]
 
-[node name="save point" parent="." groups=["SavePoints"] instance=ExtResource("6_at58o")]
+[node name="save point" parent="." groups=["SavePoints"] instance=ExtResource("6_fh7nr")]
 position = Vector2(163, 428)
 
-[node name="save point2" parent="." groups=["SavePoints"] instance=ExtResource("6_at58o")]
+[node name="save point2" parent="." groups=["SavePoints"] instance=ExtResource("6_fh7nr")]
 position = Vector2(1060, 389)
