@@ -15,4 +15,3 @@ func activate():
 func _on_area_2d_body_entered(body):
 	if body.name == "player":
 		emit_signal("save_point_activated", global_position)
-		print ("aaa")
