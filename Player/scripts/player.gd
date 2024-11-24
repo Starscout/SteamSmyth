@@ -20,7 +20,7 @@ var wall_jumped = false
 var dashed = false
 var dashing = false
 var speed_up = 3
-var speed_down = 6
+var speed_down = 8
 var speed_change = 0
 var right_left = 0
 var respawn_location = position
@@ -122,12 +122,12 @@ func _physics_process(delta):
 		coyote_timer -= delta
 	#Jump Buffer
 		#Wall Jump Left Call
-	if (jump_buffer_timer > 0 and (about_to_hit_left_wall) and is_on_wall_only()):
+	if (jump_buffer_timer > 0 and (about_to_hit_left_wall) and coyote_timer < 0):
 		jump_buffer_timer = 0
 		wall_jump_timer = wall_jump_cooldown
 		wall_jump_left = 1
 		#Wall Jump Right Call
-	if (jump_buffer_timer > 0 and about_to_hit_right_wall and is_on_wall_only()):
+	if (jump_buffer_timer > 0 and about_to_hit_right_wall and coyote_timer < 0):
 		jump_buffer_timer = 0
 		wall_jump_timer = wall_jump_cooldown
 		wall_jump_left = -1
