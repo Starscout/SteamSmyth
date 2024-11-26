@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 PlayerData="*res://Player/scripts/player_data.gd"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [input]
 
 up={

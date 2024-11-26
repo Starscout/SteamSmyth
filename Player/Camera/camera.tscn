@@ -9,6 +9,7 @@ size = Vector2(548, 278)
 size = Vector2(155, 99.5)
 
 [node name="Camera2D" type="Camera2D"]
+position = Vector2(1280, 720)
 script = ExtResource("1_xuxdd")
 
 [node name="OuterArea" type="Area2D" parent="."]

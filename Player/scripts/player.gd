@@ -61,17 +61,19 @@ func _physics_process(delta):
 			self.velocity.x += speed/3
 			speed_change -= 1
 			$AnimatedSprite2D.play("right")
+			$AnimatedSprite2D.flip_h = false
 		elif Input.is_action_pressed("left") and speed_change > 0:
 			self.velocity.x -= speed/3
 			speed_change -= 1
-			$AnimatedSprite2D.animation = "left"
+			$AnimatedSprite2D.flip_h = true
+			$AnimatedSprite2D.animation = "right"
 			
 		elif Input.is_action_pressed("right") and dashing == false:
 			self.velocity.x += speed
 			$AnimatedSprite2D.animation = "right"
 		elif Input.is_action_pressed("left") and dashing == false:
 			self.velocity.x -= speed
-			$AnimatedSprite2D.animation = "left"
+			$AnimatedSprite2D.animation = "right"
 		#Slow down for 6 frames after release
 		elif Input.is_action_just_released("left") and is_on_floor():
 			speed_change = speed_down
@@ -82,11 +84,13 @@ func _physics_process(delta):
 		elif speed_change > 0 and right_left == 1 and is_on_floor():
 			self.velocity.x -= speed/3
 			speed_change -= 1
+		
 		elif speed_change > 0 and right_left == 2 and is_on_floor():
 			self.velocity.x += speed/3
 			speed_change -= 1
+			
 		else:
-			$AnimatedSprite2D.play("idle")
+				$AnimatedSprite2D.play("idle")
 	if speed_change == 0:
 		right_left = 0
 	

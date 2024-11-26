@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dpq8thqoxvvmb" path="res://Player/Animations/miniSmyth-Running-Sheet.png" id="3_vfluj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b6t4o"]
-radius = 4.375
-height = 20.0
+radius = 6.875
+height = 37.5
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vryqa"]
 atlas = ExtResource("1_8d336")
@@ -230,7 +230,7 @@ shape = SubResource("CapsuleShape2D_b6t4o")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, 0)
-scale = Vector2(1.6, 1.6)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_hycbc")
 animation = &"idle"
 frame_progress = 0.249974

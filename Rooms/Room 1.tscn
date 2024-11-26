@@ -609,13 +609,13 @@ tile_set = SubResource("TileSet_5tyhn")
 
 [node name="player" parent="." instance=ExtResource("1_37qlp")]
 position = Vector2(163, 387)
-scale = Vector2(2.32, 2.32)
 
 [node name="Camera2D" parent="." instance=ExtResource("2_gj60m")]
-position = Vector2(657, 316)
+position = Vector2(575, 324)
 
 [node name="PointLight2D" type="PointLight2D" parent="Camera2D"]
-position = Vector2(-41, 0)
+visible = false
+position = Vector2(-3.8147e-06, 0)
 scale = Vector2(7.93269, 4.46515)
 energy = 0.32
 blend_mode = 1
