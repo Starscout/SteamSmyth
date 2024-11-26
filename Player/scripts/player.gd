@@ -60,7 +60,7 @@ func _physics_process(delta):
 		elif (Input.is_action_pressed("right") and speed_change > 0):
 			self.velocity.x += speed/3
 			speed_change -= 1
-			$AnimatedSprite2D.animation = "right"
+			$AnimatedSprite2D.play("right")
 		elif Input.is_action_pressed("left") and speed_change > 0:
 			self.velocity.x -= speed/3
 			speed_change -= 1
@@ -85,7 +85,8 @@ func _physics_process(delta):
 		elif speed_change > 0 and right_left == 2 and is_on_floor():
 			self.velocity.x += speed/3
 			speed_change -= 1
-			
+		else:
+			$AnimatedSprite2D.play("idle")
 	if speed_change == 0:
 		right_left = 0
 	
