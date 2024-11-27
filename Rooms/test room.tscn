@@ -1,6 +1,6 @@
-[gd_scene load_steps=11 format=4 uid="uid://dqkf6t3m1dghw"]
+[gd_scene load_steps=12 format=4 uid="uid://dqkf6t3m1dghw"]
 
-[ext_resource type="Script" path="res://Rooms/main.gd" id="1_rdvsp"]
+[ext_resource type="Script" path="res://Rooms/scripts/main.gd" id="1_rdvsp"]
 [ext_resource type="PackedScene" uid="uid://bhnrtjxbr5p6w" path="res://Player/player.tscn" id="2_20xbk"]
 [ext_resource type="PackedScene" uid="uid://4rh25ft4388s" path="res://Objects/Platform/basic_wall.tscn" id="2_fvlbx"]
 [ext_resource type="Texture2D" uid="uid://dyn0dhkh5mnhp" path="res://General Art/TestStuff/TestTile.png" id="3_qfxkx"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bbdfxw7kdbr1r" path="res://Player/Camera/camera.tscn" id="5_yimp1"]
 [ext_resource type="PackedScene" uid="uid://btjagb02d2d65" path="res://Player/hud.tscn" id="7_kdtm3"]
 [ext_resource type="PackedScene" uid="uid://dsh0go0rp7vbv" path="res://Objects/Enemies/spike.tscn" id="8_mkeql"]
+[ext_resource type="PackedScene" uid="uid://dkskxuwg1s5n0" path="res://Objects/Interactable/level_swap.tscn" id="9_6mdnw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4rimo"]
 texture = ExtResource("3_qfxkx")
@@ -50,7 +51,6 @@ script = ExtResource("1_rdvsp")
 [node name="player" parent="." instance=ExtResource("2_20xbk")]
 position = Vector2(174, 221)
 disable_mode = 1
-gravity = 50
 coyote_time = 0.05
 
 [node name="Basic Wall" parent="." instance=ExtResource("2_fvlbx")]
@@ -79,3 +79,11 @@ position = Vector2(-293, 256)
 
 [node name="spike" parent="." groups=["spikes"] instance=ExtResource("8_mkeql")]
 position = Vector2(1, 613)
+
+[node name="Area2D" parent="." instance=ExtResource("9_6mdnw")]
+position = Vector2(236, 87)
+NewLevel = "res://Rooms/test room.tscn"
+
+[node name="Area2D2" parent="." instance=ExtResource("9_6mdnw")]
+position = Vector2(1731, -6)
+NewLevel = "res://Rooms/Room 1.tscn"

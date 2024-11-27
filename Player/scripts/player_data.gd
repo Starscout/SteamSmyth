@@ -11,6 +11,9 @@ var abilities = {
 	"steam_bomb": false,
 	"magnet_gloves": false
 }
+
+var new_game = false
+
 func unlock_ability(ability_name: String):
 	if abilities.has(ability_name):
 		abilities[ability_name] = true

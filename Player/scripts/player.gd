@@ -1,7 +1,7 @@
 extends CharacterBody2D
 # Exported variables for easy tweaking in the editor
 @export var speed = 500
-@export var gravity = 50
+@export var gravity = 32
 @export var jump_force = 700  # Adding jump force for jumping
 @export var jump_buffer_time = .1
 @export var coyote_time = .1
@@ -39,7 +39,7 @@ func _ready():
 	var spikes = get_tree().get_nodes_in_group(("spikes"))
 	for spike in spikes:
 		spike.connect("player_hit", Callable(self, "_on_player_hit"))
-# Called every physics frame (handles movement and collisions)
+	print(gravity)
 func _physics_process(delta):
 	# Reset horizontal velocity each frame
 	if dashing == false:

@@ -2,6 +2,10 @@ extends Node2D
 
 @export var save_location_display: Node
 
+
+
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for save_point in get_tree().get_nodes_in_group("save_point"):

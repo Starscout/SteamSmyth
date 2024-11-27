@@ -20,6 +20,7 @@ shape = SubResource("RectangleShape2D_ujk3i")
 [node name="InnerArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InnerArea"]
+position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_khatp")
 debug_color = Color(0.99789, 0, 0.155606, 0.42)
 
