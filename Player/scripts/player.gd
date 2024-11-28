@@ -26,8 +26,9 @@ var right_left = 0
 var respawn_location = position
 var dash_timer = 6
 var dash_change = 0
-
+var dead = false
 signal player_path_sent(path: NodePath)
+var hud
 # Called when the node enters the scene tree for the first time
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -39,11 +40,14 @@ func _ready():
 	var spikes = get_tree().get_nodes_in_group(("spikes"))
 	for spike in spikes:
 		spike.connect("player_hit", Callable(self, "_on_player_hit"))
-	print(gravity)
+	hud = get_tree().get_root().get_node("/root/Node2D/HUD")
+
 func _physics_process(delta):
 	# Reset horizontal velocity each frame
+	
 	if dashing == false:
 		self.velocity.x = 0
+	
 	# Handle horizontal movement and animations
 	if wall_jump_timer > 0:
 		wall_jump_timer -= delta
@@ -52,7 +56,7 @@ func _physics_process(delta):
 		else:
 			self.velocity.x += speed * wall_jump_left
 		self.velocity.y = -jump_force/2
-	else:
+	elif dead == false:
 		#Start speed-up
 		if Input.is_action_just_pressed("left") or Input.is_action_just_pressed("right"):
 			speed_change = speed_up
@@ -61,11 +65,9 @@ func _physics_process(delta):
 			self.velocity.x += speed/3
 			speed_change -= 1
 			$AnimatedSprite2D.play("right")
-			$AnimatedSprite2D.flip_h = false
 		elif Input.is_action_pressed("left") and speed_change > 0:
 			self.velocity.x -= speed/3
 			speed_change -= 1
-			$AnimatedSprite2D.flip_h = true
 			$AnimatedSprite2D.animation = "right"
 			
 		elif Input.is_action_pressed("right") and dashing == false:
@@ -91,12 +93,20 @@ func _physics_process(delta):
 			
 		else:
 				$AnimatedSprite2D.play("idle")
+	print(self.velocity.y)
 	if speed_change == 0:
 		right_left = 0
-	
+	if self.velocity.x > 0:
+		$AnimatedSprite2D.flip_h = false
+	elif self.velocity.x < 0:
+		$AnimatedSprite2D.flip_h = true
 	# Apply gravity if not on the floor
-	if not is_on_floor():
-		self.velocity.y += gravity
+	if not is_on_floor() and not dead:
+		if is_on_wall() and self.velocity.y > 0:
+			self.velocity.y += gravity/2
+		else:
+			self.velocity.y += gravity
+	
 	else:
 		if !dashing:
 			self.velocity.y = 0  # Reset vertical velocity when on the ground
@@ -123,16 +133,18 @@ func _physics_process(delta):
 		dashed = false
 	if (not is_on_wall() and coyote_timer > 0 and Input.is_action_just_pressed("jump")):
 		self.velocity.y = -jump_force
+	if is_on_wall():
+		$AnimatedSprite2D.play("sidewall")
 	if coyote_timer > 0:
 		coyote_timer -= delta
 	#Jump Buffer
 		#Wall Jump Left Call
-	if (jump_buffer_timer > 0 and (about_to_hit_left_wall) and coyote_timer < 0):
+	if (jump_buffer_timer > 0 and (about_to_hit_left_wall) and coyote_timer < 0 and not dead):
 		jump_buffer_timer = 0
 		wall_jump_timer = wall_jump_cooldown
 		wall_jump_left = 1
 		#Wall Jump Right Call
-	if (jump_buffer_timer > 0 and about_to_hit_right_wall and coyote_timer < 0):
+	if (jump_buffer_timer > 0 and about_to_hit_right_wall and coyote_timer < 0 and not dead):
 		jump_buffer_timer = 0
 		wall_jump_timer = wall_jump_cooldown
 		wall_jump_left = -1
@@ -183,4 +195,13 @@ func _on_player_hit():
 	death()
 
 func death():
+	$DeathFlash.play("DeathFlash")
+	hud.transition()
+	$RespawnTimer.start()
+	dead = true
+	self.velocity.y = -self.velocity.y
+	self.velocity.x = -self.velocity.x
+	$AnimatedSprite2D.animation = "dead"
+func _on_respawn_timer_timeout():
 	global_position = respawn_location
+	dead = false

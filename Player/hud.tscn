@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://btjagb02d2d65"]
+[gd_scene load_steps=18 format=3 uid="uid://btjagb02d2d65"]
 
 [ext_resource type="Script" path="res://Player/scripts/hud.gd" id="1_65x1y"]
 [ext_resource type="Texture2D" uid="uid://b02uk5iggrxxe" path="res://General Art/TestStuff/saveIcon Sheet.png" id="2_8pfw1"]
@@ -160,6 +160,60 @@ _data = {
 "fade_in": SubResource("Animation_xuerv")
 }
 
+[sub_resource type="Animation" id="Animation_0pg1d"]
+resource_name = "fade_to_black"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dn13o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3o1wo"]
+resource_name = "fade_to_scene"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_64qcb"]
+_data = {
+"RESET": SubResource("Animation_dn13o"),
+"fade_to_black": SubResource("Animation_0pg1d"),
+"fade_to_scene": SubResource("Animation_3o1wo")
+}
+
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_65x1y")
 
@@ -175,3 +229,21 @@ frame_progress = 0.545555
 libraries = {
 "": SubResource("AnimationLibrary_nlh1j")
 }
+
+[node name="Fade In Out" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Fades" type="AnimationPlayer" parent="Fade In Out"]
+libraries = {
+"": SubResource("AnimationLibrary_64qcb")
+}
+
+[connection signal="animation_finished" from="Fade In Out/Fades" to="." method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="Fade In Out/Fades" to="." method="_on_fades_animation_finished"]

@@ -1,13 +1,25 @@
-[gd_scene load_steps=33 format=3 uid="uid://bhnrtjxbr5p6w"]
+[gd_scene load_steps=42 format=3 uid="uid://bhnrtjxbr5p6w"]
 
 [ext_resource type="Texture2D" uid="uid://chn6evt0quuc4" path="res://General Art/TestStuff/Main Character-Sheet.png" id="1_8d336"]
 [ext_resource type="Script" path="res://Player/scripts/player.gd" id="1_hkkap"]
+[ext_resource type="Shader" uid="uid://da6mr2887yii" path="res://Player/hitFlash.tres" id="2_cae45"]
 [ext_resource type="Texture2D" uid="uid://x0yk5qsg6qi8" path="res://Player/Animations/miniSmyth-Idle-Sheet.png" id="3_n6ynk"]
+[ext_resource type="Texture2D" uid="uid://bu6clpwnett40" path="res://Player/Animations/deadSmyth.png" id="3_q7plc"]
 [ext_resource type="Texture2D" uid="uid://dpq8thqoxvvmb" path="res://Player/Animations/miniSmyth-Running-Sheet.png" id="3_vfluj"]
+[ext_resource type="Texture2D" uid="uid://bm3els8q3r5dm" path="res://Player/Animations/sideWallSmyth.png" id="7_sxm6d"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b6t4o"]
-radius = 6.875
+radius = 10.625
 height = 37.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dho14"]
+shader = ExtResource("2_cae45")
+shader_parameter/Enabled = false
+shader_parameter/Tint = Color(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4djq"]
+atlas = ExtResource("3_q7plc")
+region = Rect2(0, 0, 20, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vryqa"]
 atlas = ExtResource("1_8d336")
@@ -109,12 +121,24 @@ region = Rect2(200, 0, 20, 20)
 atlas = ExtResource("3_vfluj")
 region = Rect2(220, 0, 20, 20)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fd8br"]
+atlas = ExtResource("7_sxm6d")
+region = Rect2(0, 0, 20, 20)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_l8cxs"]
 atlas = ExtResource("1_8d336")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hycbc"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4djq")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vryqa")
@@ -212,12 +236,56 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_fd8br")
+}],
+"loop": true,
+"name": &"sidewall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_l8cxs")
 }],
 "loop": true,
 "name": &"up",
 "speed": 5.0
 }]
+
+[sub_resource type="Animation" id="Animation_nfkj0"]
+resource_name = "DeathFlash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/Enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.633333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_jnak4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/Enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qo45m"]
+_data = {
+"DeathFlash": SubResource("Animation_nfkj0"),
+"RESET": SubResource("Animation_jnak4")
+}
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_hkkap")
@@ -229,11 +297,11 @@ scale = Vector2(1.6, 1.6)
 shape = SubResource("CapsuleShape2D_b6t4o")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_dho14")
 position = Vector2(-1, 0)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_hycbc")
-animation = &"idle"
-frame_progress = 0.249974
+animation = &"sidewall"
 
 [node name="Raycast_left" type="RayCast2D" parent="."]
 position = Vector2(0, 5)
@@ -242,3 +310,14 @@ target_position = Vector2(-25, 0)
 [node name="Raycast_right" type="RayCast2D" parent="."]
 position = Vector2(0, 5)
 target_position = Vector2(25, 0)
+
+[node name="DeathFlash" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qo45m")
+}
+
+[node name="RespawnTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]
