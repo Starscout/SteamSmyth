@@ -610,7 +610,6 @@ tile_set = SubResource("TileSet_5tyhn")
 
 [node name="player" parent="." instance=ExtResource("1_37qlp")]
 position = Vector2(163, 387)
-gravity = 32
 
 [node name="Camera2D" parent="." instance=ExtResource("2_gj60m")]
 position = Vector2(575, 324)
@@ -646,7 +645,7 @@ scale = Vector2(1, 6.37)
 position = Vector2(-182, 107)
 
 [node name="save point6" parent="Save points" groups=["SavePoints"] instance=ExtResource("4_ajeah")]
-position = Vector2(-276, 730)
+position = Vector2(-288, 730)
 
 [node name="spikes" type="Node" parent="."]
 
