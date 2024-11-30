@@ -83,17 +83,16 @@ func _physics_process(delta):
 		elif Input.is_action_just_released("right") and is_on_floor():
 			speed_change = speed_down
 			right_left = 2
-		elif speed_change > 0 and right_left == 1 and is_on_floor():
+		elif speed_change > 0 and right_left == 1:
 			self.velocity.x -= speed/3
 			speed_change -= 1
 		
-		elif speed_change > 0 and right_left == 2 and is_on_floor():
+		elif speed_change > 0 and right_left == 2:
 			self.velocity.x += speed/3
 			speed_change -= 1
 			
-		else:
+		elif self.velocity.y == 0:
 				$AnimatedSprite2D.play("idle")
-	print(self.velocity.y)
 	if speed_change == 0:
 		right_left = 0
 	if self.velocity.x > 0:
@@ -104,6 +103,7 @@ func _physics_process(delta):
 	if not is_on_floor() and not dead:
 		if is_on_wall() and self.velocity.y > 0:
 			self.velocity.y += gravity/2
+			$AnimatedSprite2D.play("sidewall")
 		else:
 			self.velocity.y += gravity
 	
@@ -113,7 +113,6 @@ func _physics_process(delta):
 	# Vertical movement (for "down" action, can be removed if not needed)
 	if Input.is_action_pressed("down"):
 		self.velocity.y += 10
-		$AnimatedSprite2D.animation = "down"
 	if Input.is_action_just_pressed("jump"):
 		jump_buffer_timer = jump_buffer_time
 	if jump_buffer_timer > 0:
@@ -122,7 +121,8 @@ func _physics_process(delta):
 	if (is_on_floor() and Input.is_action_just_pressed("jump")):
 		self.velocity.y = -jump_force
 		jump_buffer_timer = 0
-
+		$AnimatedSprite2D.play("up")
+		
 #Wall Jump stuffs
 	#Wall only stuff
 	about_to_hit_left_wall = $Raycast_left.is_colliding()
@@ -143,11 +143,13 @@ func _physics_process(delta):
 		jump_buffer_timer = 0
 		wall_jump_timer = wall_jump_cooldown
 		wall_jump_left = 1
+		$AnimatedSprite2D.play("up")
 		#Wall Jump Right Call
 	if (jump_buffer_timer > 0 and about_to_hit_right_wall and coyote_timer < 0 and not dead):
 		jump_buffer_timer = 0
 		wall_jump_timer = wall_jump_cooldown
 		wall_jump_left = -1
+		$AnimatedSprite2D.play("up")
 	# Use move_and_slide to handle movement and collision automatically
 	move_and_slide()
 	
@@ -188,7 +190,11 @@ func _physics_process(delta):
 		dashed = true
 	else: 
 		dashing = false
+	if self.velocity.y < 0:
+		$AnimatedSprite2D.play("up")
 
+	if self.velocity.y > 0 and not is_on_wall():
+		$AnimatedSprite2D.play("down")
 func _on_save_point_activated(new_position):
 	respawn_location = new_position
 func _on_player_hit():

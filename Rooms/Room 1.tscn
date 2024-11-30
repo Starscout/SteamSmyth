@@ -615,7 +615,6 @@ position = Vector2(163, 387)
 position = Vector2(575, 324)
 
 [node name="PointLight2D" type="PointLight2D" parent="Camera2D"]
-visible = false
 position = Vector2(-3.8147e-06, 0)
 scale = Vector2(7.93269, 4.46515)
 energy = 0.32

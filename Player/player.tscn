@@ -1,12 +1,13 @@
-[gd_scene load_steps=42 format=3 uid="uid://bhnrtjxbr5p6w"]
+[gd_scene load_steps=51 format=3 uid="uid://bhnrtjxbr5p6w"]
 
-[ext_resource type="Texture2D" uid="uid://chn6evt0quuc4" path="res://General Art/TestStuff/Main Character-Sheet.png" id="1_8d336"]
 [ext_resource type="Script" path="res://Player/scripts/player.gd" id="1_hkkap"]
 [ext_resource type="Shader" uid="uid://da6mr2887yii" path="res://Player/hitFlash.tres" id="2_cae45"]
 [ext_resource type="Texture2D" uid="uid://x0yk5qsg6qi8" path="res://Player/Animations/miniSmyth-Idle-Sheet.png" id="3_n6ynk"]
 [ext_resource type="Texture2D" uid="uid://bu6clpwnett40" path="res://Player/Animations/deadSmyth.png" id="3_q7plc"]
 [ext_resource type="Texture2D" uid="uid://dpq8thqoxvvmb" path="res://Player/Animations/miniSmyth-Running-Sheet.png" id="3_vfluj"]
+[ext_resource type="Texture2D" uid="uid://dhtpx4aelns4u" path="res://Player/Animations/fallingSmyth-Sheet.png" id="4_dsflh"]
 [ext_resource type="Texture2D" uid="uid://bm3els8q3r5dm" path="res://Player/Animations/sideWallSmyth.png" id="7_sxm6d"]
+[ext_resource type="Texture2D" uid="uid://be054pe23x5aa" path="res://Player/Animations/jumpingSmyth-Sheet.png" id="9_rqknk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b6t4o"]
 radius = 10.625
@@ -21,9 +22,33 @@ shader_parameter/Tint = Color(1, 1, 1, 1)
 atlas = ExtResource("3_q7plc")
 region = Rect2(0, 0, 20, 20)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vryqa"]
-atlas = ExtResource("1_8d336")
-region = Rect2(96, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubk26"]
+atlas = ExtResource("4_dsflh")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0casa"]
+atlas = ExtResource("4_dsflh")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xp8c"]
+atlas = ExtResource("4_dsflh")
+region = Rect2(40, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wa6d"]
+atlas = ExtResource("4_dsflh")
+region = Rect2(60, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_upol2"]
+atlas = ExtResource("4_dsflh")
+region = Rect2(80, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5thg"]
+atlas = ExtResource("4_dsflh")
+region = Rect2(100, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_varlr"]
+atlas = ExtResource("4_dsflh")
+region = Rect2(120, 0, 20, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_najyl"]
 atlas = ExtResource("3_n6ynk")
@@ -68,10 +93,6 @@ region = Rect2(180, 0, 20, 20)
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ahoc"]
 atlas = ExtResource("3_n6ynk")
 region = Rect2(200, 0, 20, 20)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vh15o"]
-atlas = ExtResource("1_8d336")
-region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3506f"]
 atlas = ExtResource("3_vfluj")
@@ -125,9 +146,21 @@ region = Rect2(220, 0, 20, 20)
 atlas = ExtResource("7_sxm6d")
 region = Rect2(0, 0, 20, 20)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_l8cxs"]
-atlas = ExtResource("1_8d336")
-region = Rect2(32, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_23jyb"]
+atlas = ExtResource("9_rqknk")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1e1k"]
+atlas = ExtResource("9_rqknk")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r53p3"]
+atlas = ExtResource("9_rqknk")
+region = Rect2(40, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_npa1i"]
+atlas = ExtResource("9_rqknk")
+region = Rect2(60, 0, 20, 20)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hycbc"]
 animations = [{
@@ -141,11 +174,29 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vryqa")
+"texture": SubResource("AtlasTexture_ubk26")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0casa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xp8c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wa6d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_upol2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5thg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_varlr")
 }],
 "loop": true,
 "name": &"down",
-"speed": 5.0
+"speed": 13.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -185,10 +236,7 @@ animations = [{
 "name": &"idle",
 "speed": 5.0
 }, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vh15o")
-}],
+"frames": [],
 "loop": true,
 "name": &"left",
 "speed": 5.0
@@ -244,11 +292,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_l8cxs")
+"texture": SubResource("AtlasTexture_23jyb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1e1k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r53p3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_npa1i")
 }],
-"loop": true,
+"loop": false,
 "name": &"up",
-"speed": 5.0
+"speed": 4.0
 }]
 
 [sub_resource type="Animation" id="Animation_nfkj0"]
@@ -300,7 +357,7 @@ material = SubResource("ShaderMaterial_dho14")
 position = Vector2(-1, 0)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_hycbc")
-animation = &"sidewall"
+animation = &"idle"
 
 [node name="Raycast_left" type="RayCast2D" parent="."]
 position = Vector2(0, 5)
