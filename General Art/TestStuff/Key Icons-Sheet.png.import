@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dogbi5t0m3tbl"
-path="res://.godot/imported/hotdog.png-23b5a45187982fe2804a40796401268a.ctex"
+uid="uid://dn67msmr0p10j"
+path="res://.godot/imported/Key Icons-Sheet.png-54b52fa0737f38f5e1309a5956e8cefc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Objects/Testing/hotdog.png"
-dest_files=["res://.godot/imported/hotdog.png-23b5a45187982fe2804a40796401268a.ctex"]
+source_file="res://General Art/TestStuff/Key Icons-Sheet.png"
+dest_files=["res://.godot/imported/Key Icons-Sheet.png-54b52fa0737f38f5e1309a5956e8cefc.ctex"]
 
 [params]
 

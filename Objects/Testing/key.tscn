@@ -1,0 +1,93 @@
+[gd_scene load_steps=10 format=3 uid="uid://c8euyb21yjr4a"]
+
+[ext_resource type="Script" path="res://Objects/Testing/key.gd" id="1_hprbm"]
+[ext_resource type="Texture2D" uid="uid://dn67msmr0p10j" path="res://General Art/TestStuff/Key Icons-Sheet.png" id="2_a8rr3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqmkq"]
+atlas = ExtResource("2_a8rr3")
+region = Rect2(246, 0, 41, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifkkc"]
+atlas = ExtResource("2_a8rr3")
+region = Rect2(287, 0, 41, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2c0x"]
+atlas = ExtResource("2_a8rr3")
+region = Rect2(164, 0, 41, 44)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0yenj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqmkq")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifkkc")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2c0x")
+}],
+"loop": true,
+"name": &"z",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_u7dw7"]
+resource_name = "hover"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 3.5, 4, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 15), Vector2(0, 15), Vector2(0, -15), Vector2(0, -15), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_t41kl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ubgx2"]
+_data = {
+"RESET": SubResource("Animation_t41kl"),
+"hover": SubResource("Animation_u7dw7")
+}
+
+[node name="key" type="Sprite2D"]
+script = ExtResource("1_hprbm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0yenj")
+animation = &"z"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_ubgx2")
+}
