@@ -47,7 +47,7 @@ func _physics_process(delta):
 	
 	if dashing == false:
 		self.velocity.x = 0
-	
+		$DashParticles.emitting = false
 	# Handle horizontal movement and animations
 	if wall_jump_timer > 0:
 		wall_jump_timer -= delta
@@ -97,8 +97,10 @@ func _physics_process(delta):
 		right_left = 0
 	if self.velocity.x > 0:
 		$AnimatedSprite2D.flip_h = false
+		$DashParticles.scale.x = 1
 	elif self.velocity.x < 0:
 		$AnimatedSprite2D.flip_h = true
+		$DashParticles.scale.x = -1
 	# Apply gravity if not on the floor
 	if not is_on_floor() and not dead:
 		if is_on_wall() and self.velocity.y > 0:
@@ -161,6 +163,7 @@ func _physics_process(delta):
 		wall_jump_timer = 0
 		
 		dashing = true
+		
 		dash_change = dash_timer
 		if Input.is_action_pressed("left") and Input.is_action_pressed("up"):
 			self.velocity.x = -750
@@ -188,6 +191,7 @@ func _physics_process(delta):
 	if dash_change > 0:
 		dash_change -= 1
 		dashed = true
+		$DashParticles.emitting = true
 	else: 
 		dashing = false
 	if self.velocity.y < 0:
