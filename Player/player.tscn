@@ -44,8 +44,8 @@ shader_parameter/particles_anim_v_frames = 1
 shader_parameter/particles_anim_loop = false
 
 [sub_resource type="Curve" id="Curve_t4rrm"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.382353, 0.538461), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_aef8e"]
 curve = SubResource("Curve_t4rrm")
@@ -55,6 +55,7 @@ emission_shape_offset = Vector3(77.43, 0, 0)
 gravity = Vector3(0, 0, 0)
 scale_min = 3.0
 scale_max = 3.0
+color = Color(1, 1, 1, 0.5)
 alpha_curve = SubResource("CurveTexture_aef8e")
 hue_variation_min = 1.0
 hue_variation_max = 1.0
@@ -408,14 +409,15 @@ emitting = false
 amount = 100
 process_material = SubResource("ParticleProcessMaterial_oltxb")
 texture = ExtResource("9_rqknk")
+lifetime = 0.25
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3.8147e-06, -1.19209e-07)
 scale = Vector2(1.6, 1.6)
 shape = SubResource("CapsuleShape2D_b6t4o")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_dho14")
-position = Vector2(-1, 0)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_hycbc")
 animation = &"idle"
