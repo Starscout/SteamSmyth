@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://bhnrtjxbr5p6w"]
+[gd_scene load_steps=56 format=3 uid="uid://bhnrtjxbr5p6w"]
 
 [ext_resource type="Script" path="res://Player/scripts/player.gd" id="1_hkkap"]
 [ext_resource type="Shader" uid="uid://da6mr2887yii" path="res://Player/hitFlash.tres" id="2_cae45"]
@@ -8,6 +8,61 @@
 [ext_resource type="Texture2D" uid="uid://dhtpx4aelns4u" path="res://Player/Animations/fallingSmyth-Sheet.png" id="4_dsflh"]
 [ext_resource type="Texture2D" uid="uid://bm3els8q3r5dm" path="res://Player/Animations/sideWallSmyth.png" id="7_sxm6d"]
 [ext_resource type="Texture2D" uid="uid://be054pe23x5aa" path="res://Player/Animations/jumpingSmyth-Sheet.png" id="9_rqknk"]
+
+[sub_resource type="Shader" id="Shader_lkl1s"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.3.stable's CanvasItemMaterial.
+
+shader_type canvas_item;
+render_mode blend_mix;
+uniform int particles_anim_h_frames;
+uniform int particles_anim_v_frames;
+uniform bool particles_anim_loop;
+
+void vertex() {
+	
+	float h_frames = float(particles_anim_h_frames);
+	float v_frames = float(particles_anim_v_frames);
+	VERTEX.xy /= vec2(h_frames, v_frames);
+	VERTEX.x *= float(3.5);
+	float particle_total_frames = float(particles_anim_h_frames * particles_anim_v_frames);
+	float particle_frame = floor(INSTANCE_CUSTOM.z * float(particle_total_frames));
+	if (!particles_anim_loop) {
+		particle_frame = clamp(particle_frame, 0.0, particle_total_frames - 1.0);
+	} else {
+		particle_frame = mod(particle_frame, particle_total_frames);
+	}
+	
+	vec2 scale_uv = UV / vec2(h_frames, v_frames);
+	UV += vec2(mod(particle_frame, h_frames) / h_frames, floor((particle_frame + 0.5) / h_frames) / v_frames);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y23nc"]
+shader = SubResource("Shader_lkl1s")
+shader_parameter/particles_anim_h_frames = 4
+shader_parameter/particles_anim_v_frames = 1
+shader_parameter/particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_t4rrm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.382353, 0.538461), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_aef8e"]
+curve = SubResource("Curve_t4rrm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oltxb"]
+emission_shape_offset = Vector3(77.43, 0, 0)
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 3.0
+color = Color(1, 1, 1, 0.5)
+alpha_curve = SubResource("CurveTexture_aef8e")
+hue_variation_min = 1.0
+hue_variation_max = 1.0
+anim_speed_min = 38.0
+anim_speed_max = 38.0
+anim_offset_min = 1.0
+anim_offset_max = 1.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b6t4o"]
 radius = 10.625
@@ -348,13 +403,21 @@ _data = {
 script = ExtResource("1_hkkap")
 jump_buffer_time = 0.05
 
+[node name="DashParticles" type="GPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_y23nc")
+emitting = false
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_oltxb")
+texture = ExtResource("9_rqknk")
+lifetime = 0.25
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3.8147e-06, -1.19209e-07)
 scale = Vector2(1.6, 1.6)
 shape = SubResource("CapsuleShape2D_b6t4o")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_dho14")
-position = Vector2(-1, 0)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_hycbc")
 animation = &"idle"
