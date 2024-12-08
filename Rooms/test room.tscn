@@ -49,7 +49,7 @@ sources/0 = SubResource("TileSetAtlasSource_4rimo")
 script = ExtResource("1_rdvsp")
 
 [node name="player" parent="." instance=ExtResource("2_20xbk")]
-position = Vector2(174, 221)
+position = Vector2(168, 218)
 disable_mode = 1
 coyote_time = 0.05
 
@@ -85,5 +85,5 @@ position = Vector2(236, 87)
 NewLevel = "res://Rooms/test room.tscn"
 
 [node name="Area2D2" parent="." instance=ExtResource("9_6mdnw")]
-position = Vector2(1331, 208)
+position = Vector2(1366, 201)
 NewLevel = "res://Rooms/Room 1.tscn"
