@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://cugu1d3m1psbk"]
+[gd_scene load_steps=21 format=4 uid="uid://cugu1d3m1psbk"]
 
 [ext_resource type="Texture2D" uid="uid://c8fxhhf1xuvxw" path="res://General Art/TestStuff/background-tilemap.png" id="1_8b3cv"]
 [ext_resource type="PackedScene" uid="uid://bhnrtjxbr5p6w" path="res://Player/player.tscn" id="1_37qlp"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://brdmuto688d6d" path="res://General Art/TestStuff/Tilesheet.png" id="8_rbocn"]
 [ext_resource type="PackedScene" uid="uid://dkskxuwg1s5n0" path="res://Objects/Interactable/level_swap.tscn" id="9_gufcy"]
 [ext_resource type="PackedScene" uid="uid://c8euyb21yjr4a" path="res://Objects/Testing/key.tscn" id="10_7x50e"]
+[ext_resource type="PackedScene" uid="uid://bmvhe0p5u4n2q" path="res://Player/backpack/Backpack.tscn" id="11_h60nq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dd6kt"]
 texture = ExtResource("1_8b3cv")
@@ -719,7 +720,7 @@ tile_map_data = PackedByteArray("AABFAA4AAQAMAAcAAABGAA4AAQAMAAcAAABHAA4AAQAMAAc
 tile_set = SubResource("TileSet_8hjxa")
 
 [node name="Room_Change" parent="." instance=ExtResource("9_gufcy")]
-position = Vector2(1364, -3)
+position = Vector2(1387, -83)
 NewLevel = "res://Rooms/test room.tscn"
 
 [node name="Keys" type="Node" parent="."]
@@ -735,3 +736,7 @@ symbol = "right"
 [node name="z" parent="Keys" instance=ExtResource("10_7x50e")]
 position = Vector2(665, 323)
 symbol = "z"
+
+[node name="Sprite2D" parent="." instance=ExtResource("11_h60nq")]
+position = Vector2(1239, -21)
+symbol = "win_condition"

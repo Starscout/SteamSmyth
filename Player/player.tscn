@@ -404,6 +404,7 @@ script = ExtResource("1_hkkap")
 jump_buffer_time = 0.05
 
 [node name="DashParticles" type="GPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.55)
 material = SubResource("ShaderMaterial_y23nc")
 emitting = false
 amount = 100

@@ -97,9 +97,11 @@ func _physics_process(delta):
 		right_left = 0
 	if self.velocity.x > 0:
 		$AnimatedSprite2D.flip_h = false
+		right_left = 2
 		$DashParticles.scale.x = 1
 	elif self.velocity.x < 0:
 		$AnimatedSprite2D.flip_h = true
+		right_left = 1
 		$DashParticles.scale.x = -1
 	# Apply gravity if not on the floor
 	if not is_on_floor() and not dead:
