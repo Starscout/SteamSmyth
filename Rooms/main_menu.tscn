@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3tn4l0ce5lf"]
+
+[ext_resource type="Texture2D" uid="uid://b6ria21kegxhy" path="res://General Art/TestStuff/Steamsmyth logo.png" id="1_lgsdj"]
+[ext_resource type="PackedScene" uid="uid://d1vg0hv3ohb" path="res://Objects/Interactable/menu.tscn" id="2_s8hgw"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(540, 169)
+scale = Vector2(0.16, 0.16)
+texture = ExtResource("1_lgsdj")
+
+[node name="menu" parent="." instance=ExtResource("2_s8hgw")]
+offset_left = 537.0
+offset_top = 365.0
+offset_right = 537.0
+offset_bottom = 365.0
