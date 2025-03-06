@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://xh3cta82vnro"]
+
+[ext_resource type="AudioStream" uid="uid://w5atb1h732cm" path="res://Audio/Music/Whispers in the Rust.mp3" id="1_dd65n"]
+[ext_resource type="Script" path="res://Audio/Music/audio_stream_player.gd" id="2_ylksi"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_dd65n")
+script = ExtResource("2_ylksi")

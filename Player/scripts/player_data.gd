@@ -1,9 +1,12 @@
 extends Node
 
 var save_path = "user://save_data.json"
+var death_counter = 0
+var new_game = false
 
-
-
+var stopwatch = 0.0
+var running = false
+var jump_pack = false
 #Abilities in game
 var abilities = {
 	"double_jump": false,
@@ -12,7 +15,7 @@ var abilities = {
 	"magnet_gloves": false
 }
 
-var new_game = false
+
 
 func unlock_ability(ability_name: String):
 	if abilities.has(ability_name):
@@ -28,5 +31,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
+func _process(delta):
+	if running == true:
+		stopwatch += delta
+	

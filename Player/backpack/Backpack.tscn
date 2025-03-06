@@ -60,7 +60,6 @@ _data = {
 size = Vector2(90, 96.25)
 
 [node name="Sprite2D" type="Sprite2D"]
-z_index = -1
 scale = Vector2(0.8, 0.8)
 script = ExtResource("2_k31gd")
 

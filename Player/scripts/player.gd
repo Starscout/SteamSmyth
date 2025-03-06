@@ -29,8 +29,11 @@ var dash_change = 0
 var dead = false
 signal player_path_sent(path: NodePath)
 var hud
+var backpack = preload("res://Player/backpack/Backpack.tscn")
+
 # Called when the node enters the scene tree for the first time
 func _ready():
+	
 	screen_size = get_viewport_rect().size
 	#send a signal to camera of my path
 	emit_signal("player_path_sent", get_path())
@@ -42,9 +45,9 @@ func _ready():
 		spike.connect("player_hit", Callable(self, "_on_player_hit"))
 	hud = get_tree().get_root().get_node("/root/Node2D/HUD")
 
+		
 func _physics_process(delta):
 	# Reset horizontal velocity each frame
-	
 	if dashing == false:
 		self.velocity.x = 0
 		$DashParticles.emitting = false
@@ -161,7 +164,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("reset"):
 		death()
 		
-	if Input.is_action_just_pressed("dash") and dashed == false:
+	if Input.is_action_just_pressed("dash") and dashed == false and PlayerData.jump_pack == true:
 		wall_jump_timer = 0
 		
 		dashing = true
@@ -201,12 +204,20 @@ func _physics_process(delta):
 
 	if self.velocity.y > 0 and not is_on_wall():
 		$AnimatedSprite2D.play("down")
+	
+	if PlayerData.jump_pack == true and not get_node("../Sprite2D"):
+		add_sibling(backpack.instantiate())
+	
+func add_backpack():
+	pass
+	
 func _on_save_point_activated(new_position):
 	respawn_location = new_position
 func _on_player_hit():
 	death()
 
 func death():
+	PlayerData.death_counter += 1
 	$DeathFlash.play("DeathFlash")
 	hud.transition()
 	$RespawnTimer.start()

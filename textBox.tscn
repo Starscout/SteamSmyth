@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://drmjw8vjqrr56"]
+
+[ext_resource type="FontFile" uid="uid://cx42386pak2pq" path="res://General Art/Fonts/DS-DIGIB.TTF" id="1_fjeju"]
+[ext_resource type="Script" path="res://text_box.gd" id="1_u63w5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ldbg1"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_u63w5")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_left = -1.0
+offset_top = 24.0
+offset_right = 1151.0
+offset_bottom = 301.0
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 50
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ldbg1")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/Panel/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fjeju")
+theme_override_font_sizes/font_size = 46
+text = "Congradulations! press x to dash
+Play here or go back in
+ the bottom right corner"

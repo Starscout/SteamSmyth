@@ -91,3 +91,6 @@ NewLevel = "res://Rooms/Room 1.tscn"
 
 [node name="Sprite2D" parent="." instance=ExtResource("10_1pe0b")]
 position = Vector2(457, 145)
+
+[node name="Sprite2D2" parent="." instance=ExtResource("10_1pe0b")]
+position = Vector2(322, 129)

@@ -12,11 +12,10 @@ signal win()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	 # Limit velocity to a reasonable range
-
+	$AnimatedSprite2D.play("default")
 	if symbol == "win_condition":
 		$AnimatedSprite2D/AnimationPlayer.play("hover")
 		win_condition = true
-		print(win_condition)
 	else:
 		$AnimatedSprite2D/AnimationPlayer.play("RESET")
 		win_condition = false
@@ -36,9 +35,9 @@ func _process(delta):
 		target.x = player.global_position.x + right
 		target.y = player.global_position.y
 		global_position = global_position.lerp(target, .25)
-		print(player.right_left)
-
 
 func _on_area_2d_body_entered(body):
 	if body.name == "player" and win_condition == true:
+		get_tree().change_scene_to_file("res://Rooms/Room_Hub.tscn")
+		PlayerData.jump_pack = true
 		emit_signal("win")
